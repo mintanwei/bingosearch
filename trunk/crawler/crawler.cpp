@@ -52,13 +52,16 @@ void Crawler::Start()
 
 void Crawler::Download(const string& query)
 {
+    char buffer[1 << 15];
     CURL* curl = curl_easy_init();   
     if (curl) 
     {
         curl_easy_setopt(curl, CURLOPT_URL, "http://www.baidu.com/");
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) buffer);
         curl_easy_perform(curl);
         curl_easy_cleanup(curl);
     }
+    cout << buffer << endl;
 }
 
 } // end of crawler 
