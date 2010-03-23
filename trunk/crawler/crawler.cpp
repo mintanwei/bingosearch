@@ -52,7 +52,13 @@ void Crawler::Start()
 
 void Crawler::Download(const string& query)
 {
-    
+    CURL* curl = curl_easy_init();   
+    if (curl) 
+    {
+        curl_easy_setopt(curl, CURLOPT_URL, "http://www.baidu.com/");
+        curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+    }
 }
 
 } // end of crawler 
