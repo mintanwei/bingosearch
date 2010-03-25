@@ -22,10 +22,10 @@ class Crawler
 public:
     Crawler();
     virtual ~Crawler();
-    void GetQueryList(const std::string& file = "./query_list");
     void Start();
     
 private:
+    void GetQueryList(const std::string& file = "./query_list");
     void Download(const std::string& query);
     std::set<std::string> mQueryList;
 };

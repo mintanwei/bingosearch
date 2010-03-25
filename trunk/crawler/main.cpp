@@ -5,5 +5,6 @@ using namespace bingo::crawler;
 int main(int argc, const char *argv[])
 {
     Crawler crawler;   
+    crawler.Start();
     return 0;
 }

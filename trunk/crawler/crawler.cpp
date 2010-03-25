@@ -27,6 +27,16 @@ Crawler::~Crawler()
 {
 }
 
+
+void Crawler::Start()
+{
+    GetQueryList();
+    for (set<string>::iterator p = mQueryList.begin(); p != mQueryList.end(); ++p) 
+    {
+        Download(*p);
+    }
+}
+
 void Crawler::GetQueryList(const string& file)
 {
     ifstream fin(file.c_str());
@@ -42,24 +52,32 @@ void Crawler::GetQueryList(const string& file)
     }
 }
 
-void Crawler::Start()
+static int writer(char *data, size_t size, size_t nmemb, string *writerData)
 {
-    for (set<string>::iterator p = mQueryList.begin(); p != mQueryList.end(); ++p) 
-    {
-        Download(*p);
-    }
+    unsigned long sizes = size * nmemb;
+    if (writerData == NULL) return 0;
+    writerData->append(data, sizes);
+    return sizes;
 }
 
 void Crawler::Download(const string& query)
 {
-    char buffer[1 << 15];
+    string buffer;
     CURL* curl = curl_easy_init();   
+
     if (curl) 
     {
-        curl_easy_setopt(curl, CURLOPT_URL, "http://www.baidu.com/");
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*) buffer);
+        curl_easy_setopt(curl, CURLOPT_URL, "http://images.google.com.hk/images?q=ipod&start=0");
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
         curl_easy_perform(curl);
         curl_easy_cleanup(curl);
+    }
+    else 
+    {
+        cerr << "ERROR: FAIL TO INIT CURL" << endl;
+        exit(1);
     }
     cout << buffer << endl;
 }
