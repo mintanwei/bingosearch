@@ -11,6 +11,7 @@
 #include <iostream>
 #include "crawler.h"
 #include "curl.h"
+#include "sys/stat.h"
 
 using namespace std;
 
@@ -80,6 +81,12 @@ void Crawler::Download(const string& query)
         exit(1);
     }
     cout << buffer << endl;
+
+    string dir("data/");
+    dir.append(query);
+    mkdir(dir.c_str(), S_IRWXU);
+
+    string file(dir);
 }
 
 } // end of crawler 

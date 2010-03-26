@@ -25,6 +25,8 @@ public:
     void Start();
     
 private:
+    static const size_t IMAGES_PER_PAGE = 21;
+    static const size_t MAX_PAGE_COUNT = 50;
     void GetQueryList(const std::string& file = "./query_list");
     void Download(const std::string& query);
     std::set<std::string> mQueryList;
