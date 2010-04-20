@@ -23,18 +23,20 @@ class VisualRank
 public:
 	VisualRank();
 	virtual ~VisualRank();
-	void GetVisualRank(const std::string& path, const ImageSimilarity* judge, 
-			           std::vector<double>&  visualRank);
+	void GetVisualRank(const std::string& path, const bingo::imagesimilarity::ImageSimilarity* judge);
+	void Output(const std::string& path);
 private:
 	size_t GetDirItemCount(const std::string& path);
+	bool GaussTpivot(size_t n);
 
 private:
 	static const size_t IMAGE_PER_PATH = 1024;
 	static const double DAMPING_FACTOR = 0.85;
 	static const double EPS = 1e-8;
+
 	double mRes[IMAGE_PER_PATH];
 	double mMat[IMAGE_PER_PATH][IMAGE_PER_PATH];
-	
+	size_t imageCount;
 };
 
 
