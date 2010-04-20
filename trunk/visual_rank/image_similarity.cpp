@@ -6,3 +6,27 @@
  * @date 2010-04-06
  */
 
+#include "image_similarity.h"
+
+using namespace std;
+
+namespace bingo 
+{
+namespace imagesimilarity 
+{
+
+ImageSimilarity::ImageSimilarity()
+{
+}
+
+ImageSimilarity::~ImageSimilarity()
+{
+}
+
+double ImageSimilarity::GetSimilarity(const string& imgFileA, const string& imgFileB)
+{
+	return 1.0;
+}
+
+} /* end of imagesimilarity */
+} /* end of bingo */
