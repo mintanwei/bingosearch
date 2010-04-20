@@ -9,10 +9,34 @@
 #ifndef BINGO_VISUAL_RANK_VISUAL_RANK_H
 #define BINGO_VISUAL_RANK_VISUAL_RANK_H
 
+#include "image_similarity.h"
+#include <vector>
+#include <string>
+
 namespace bingo 
 {
 namespace visualrank 
 {
+
+class VisualRank 
+{
+public:
+	VisualRank();
+	virtual ~VisualRank();
+	void GetVisualRank(const std::string& path, const ImageSimilarity* judge, 
+			           std::vector<double>&  visualRank);
+private:
+	size_t GetDirItemCount(const std::string& path);
+
+private:
+	static const size_t IMAGE_PER_PATH = 1024;
+	static const double DAMPING_FACTOR = 0.85;
+	static const double EPS = 1e-8;
+	double mRes[IMAGE_PER_PATH];
+	double mMat[IMAGE_PER_PATH][IMAGE_PER_PATH];
+	
+};
+
 
 } /* end of visualrank */
 } /* end of bingo */

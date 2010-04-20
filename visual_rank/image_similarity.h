@@ -9,6 +9,27 @@
 #ifndef BINGO_VISUAL_RANK_IMAGE_SIMILARITY_H
 #define BINGO_VISUAL_RANK_IMAGE_SIMILARITY_H
 
+#include <string>
+
+namespace bingo 
+{
+namespace imagesimilarity 
+{
+
+class ImageSimilarity 
+{
+public:
+	ImageSimilarity();
+	virtual ~ImageSimilarity();
+	virtual double GetSimilarity(const std::string& imgFileA, const std::string& imgFileB);
+
+protected:
+	
+};
+
+} /* end of imagesimilarity */
+} /* end of bingo */
+
 
 
 #endif /* end of include guard: BINGO_VISUAL_RANK_IMAGE_SIMILARITY_H */
