@@ -23,7 +23,7 @@ ImageSimilarity::~ImageSimilarity()
 {
 }
 
-double ImageSimilarity::GetSimilarity(const string& imgFileA, const string& imgFileB)
+double ImageSimilarity::GetSimilarity(const string& imgFileA, const string& imgFileB) const
 {
 	return 1.0;
 }
