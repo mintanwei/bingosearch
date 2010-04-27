@@ -1,1 +1,1 @@
-g++ main.cpp index_builder
+g++ main.cpp -o index_builder
