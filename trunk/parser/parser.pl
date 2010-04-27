@@ -16,6 +16,11 @@ while (<QUERY>) {
 		while (<NOW>) {
 			while (/(\["\/imgres\?.*?""])/g) {
 				my $tmp = $1;
+                print "$tmp\n\n\n";
+                # thumbnail
+                if ($tmp =~ /" target\\x3d_blank","(.*?)".*?(http:\/\/t\d.gstatic.com\/images)/) {
+                    print OUTPUT "$2?q=tbn:$1\n";
+                }
 				# img url
 				if ($tmp =~ /imgurl\\x3d(.*?)\\x26/) {
 					print OUTPUT "$1\n";
