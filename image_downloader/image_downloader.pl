@@ -21,7 +21,7 @@ while (<QUERY>) {
 		my $id = $cnt / 5;
 		chomp(my $url = $_);
 		my $file = "../data/images/$tmp/$id";
-		system("wget '$url' -O $file -t 2 -T 8");
+		system("wget '$url' -O $file -t 2 -T 16");
 		++$cnt;
 	}
 	close IN;
