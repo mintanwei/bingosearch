@@ -36,7 +36,7 @@ private:
 
     double mRes[IMAGE_PER_PATH];
     double mMat[IMAGE_PER_PATH][IMAGE_PER_PATH];
-    size_t imageCount;
+    size_t mImageCount;
 };
 
 

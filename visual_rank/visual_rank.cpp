@@ -42,25 +42,25 @@ void VisualRank::GetVisualRank(const string& path, const ImageSimilarity* judge)
         exit(1);
     }
 
-    imageCount = GetDirItemCount(path);
+    mImageCount = GetDirItemCount(path);
 
-    if (imageCount == 0) 
+    if (mImageCount == 0) 
     {
         Log::Output(string("NO IMAGE FILE IN ") + path, Log::ERROR);
         exit(1);
     }
 
     // get basic similarity matrix
-    for (size_t i = 0; i < imageCount - 1; ++i) 
+    for (size_t i = 0; i < mImageCount - 1; ++i) 
     {
         mRes[i] = 0;
     }
-    mRes[imageCount - 1] = 1;
+    mRes[mImageCount - 1] = 1;
 
-    for (size_t i = 0; i < imageCount; ++i) 
+    for (size_t i = 0; i < mImageCount; ++i) 
     {
         mMat[i][i] = 0;
-        for (size_t j = i + 1; j < imageCount; ++j) 
+        for (size_t j = i + 1; j < mImageCount; ++j) 
         {
             mMat[i][j] = mMat[j][i] = DAMPING_FACTOR * 
                 judge->GetSimilarity(path + Common::itoa<size_t>(i), 
@@ -68,42 +68,42 @@ void VisualRank::GetVisualRank(const string& path, const ImageSimilarity* judge)
         }
     }
     // normalize
-    for (size_t j = 0; j < imageCount; ++j) 
+    for (size_t j = 0; j < mImageCount; ++j) 
     {
         double colSum = 0;
-        for (size_t i = 0; i < imageCount; ++i)
+        for (size_t i = 0; i < mImageCount; ++i)
         {
             colSum += mMat[i][j];
         }
         if (colSum > EPS) 
         {
-            for (size_t i = 0; i < imageCount; ++i) 
+            for (size_t i = 0; i < mImageCount; ++i) 
             {
                 mMat[i][j] /= colSum;
             }
         }
     }
-    for (size_t i = 0; i < imageCount; ++i) 
+    for (size_t i = 0; i < mImageCount; ++i) 
     {
         mMat[i][i] = -1;
     }
     // gauss
-    for (size_t j = 0; j < imageCount; ++j) 
+    for (size_t j = 0; j < mImageCount; ++j) 
     {
-        mMat[imageCount - 1][j] = 1;
+        mMat[mImageCount - 1][j] = 1;
     }
-    GaussTpivot(imageCount);
+    GaussTpivot(mImageCount);
 
     // for test
-    for (size_t i = 0; i < imageCount; ++i) 
+    for (size_t i = 0; i < mImageCount; ++i) 
     {
-        for    (size_t j = 0; j < imageCount; ++j)
+        for    (size_t j = 0; j < mImageCount; ++j)
         {
             cout << mMat[i][j] << " ";
         }
         cout << endl;
     }
-    for (size_t i = 0; i < imageCount; ++i) 
+    for (size_t i = 0; i < mImageCount; ++i) 
     {
         cout << i << " " << mRes[i] << endl;
     }
@@ -222,7 +222,7 @@ void VisualRank::Output(const string& path)
         exit(1);
     }
 
-    for (size_t i = 0; i < imageCount; ++i) 
+    for (size_t i = 0; i < mImageCount; ++i) 
     {
         out << mRes[i] << endl;
     }
