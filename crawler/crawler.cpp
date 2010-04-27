@@ -106,6 +106,11 @@ void Crawler::Download(const string& query, const size_t page, const string& dir
 	file.append(1, '/');
 	file.append(Common::itoa<size_t>(page));
 	ofstream fout(file.c_str());
+    if (fout.fail()) 
+    {
+        Log::Output(string("FAIL TO CREATE FILE ") + file, Log::ERROR);
+        exit(1);
+    }
 	fout << buffer;
 }
 
