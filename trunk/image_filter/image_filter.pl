@@ -19,14 +19,14 @@ while (<QUERY>) {
 			my $size = -s "$file";
 			if ($size != 0) {
 				rename("$file", "$file2");
-				for (my $var2 = 0; $var2 < 4; $var2++) {
+				for (my $var2 = 0; $var2 < 5; $var2++) {
 					my $line = <METADATA>;
 					print TMP "$line";
 				}
 				++ $real_id;
 			}
 			else {
-				for (my $var2 = 0; $var2 < 4; $var2++) {
+				for (my $var2 = 0; $var2 < 5; $var2++) {
 					my $line = <METADATA>;
 				}
 				unlink("$file");
