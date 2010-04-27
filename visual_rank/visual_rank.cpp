@@ -97,7 +97,7 @@ void VisualRank::GetVisualRank(const string& path, const ImageSimilarity* judge)
     // for test
     for (size_t i = 0; i < mImageCount; ++i) 
     {
-        for    (size_t j = 0; j < mImageCount; ++j)
+        for (size_t j = 0; j < mImageCount; ++j)
         {
             cout << mMat[i][j] << " ";
         }
