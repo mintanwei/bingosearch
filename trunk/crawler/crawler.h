@@ -29,7 +29,7 @@ private:
     static const size_t MAX_DOWNLOAD_PAGE = 50;
     void GetQueryList(const std::string& file = "../data/query_list");
     void Download(const std::string& query);
-	void Download(const std::string& query, const size_t page, const std::string& dir);
+    void Download(const std::string& query, const size_t page, const std::string& dir);
 
 private:
     std::set<std::string> mQueryList;
