@@ -1,3 +1,4 @@
+rm -r data
 mkdir -p data
 cd data
 mkdir -p images
