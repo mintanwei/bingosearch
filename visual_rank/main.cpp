@@ -17,24 +17,24 @@ using namespace bingo::imagesimilarity;
 
 int main(int argc, const char *argv[])
 {
-	ifstream in("../data/query_list");
+    ifstream in("../data/query_list");
 
-	if (in.fail()) 
-	{
-		cerr << "FAIL TO OPEN FILE ../data/query_list" << endl;
-		exit(1);
-	}
+    if (in.fail()) 
+    {
+        cerr << "FAIL TO OPEN FILE ../data/query_list" << endl;
+        exit(1);
+    }
 
-	string query;
-	ImageSimilarity* judge = new ImageSimilarity();
-	VisualRank visualRank;
-	while (in >> query) 
-	{
-		visualRank.GetVisualRank(string("../data/images/") + query + "/", judge);
-		visualRank.Output(string("../data/visual_rank/") + query);
-	}
+    string query;
+    ImageSimilarity* judge = new ImageSimilarity();
+    VisualRank visualRank;
+    while (in >> query) 
+    {
+        visualRank.GetVisualRank(string("../data/images/") + query + "/", judge);
+        visualRank.Output(string("../data/visual_rank/") + query);
+    }
 
-	delete judge;
+    delete judge;
 
-	return 0;
+    return 0;
 }

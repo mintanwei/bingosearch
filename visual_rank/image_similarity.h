@@ -19,12 +19,12 @@ namespace imagesimilarity
 class ImageSimilarity 
 {
 public:
-	ImageSimilarity();
-	virtual ~ImageSimilarity();
-	virtual double GetSimilarity(const std::string& imgFileA, const std::string& imgFileB) const;
+    ImageSimilarity();
+    virtual ~ImageSimilarity();
+    virtual double GetSimilarity(const std::string& imgFileA, const std::string& imgFileB) const;
 
 protected:
-	
+    
 };
 
 } /* end of imagesimilarity */

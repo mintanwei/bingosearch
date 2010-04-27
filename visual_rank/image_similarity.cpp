@@ -25,7 +25,7 @@ ImageSimilarity::~ImageSimilarity()
 
 double ImageSimilarity::GetSimilarity(const string& imgFileA, const string& imgFileB) const
 {
-	return 1.0;
+    return 1.0;
 }
 
 } /* end of imagesimilarity */

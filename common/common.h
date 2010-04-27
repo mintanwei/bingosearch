@@ -22,36 +22,36 @@ namespace common
 class Common 
 {
 public:
-	Common();
-	virtual ~Common();
-	template<typename T> static const string itoa(const T value);
+    Common();
+    virtual ~Common();
+    template<typename T> static const string itoa(const T value);
 
 private:
 };
 
 template<typename T> const string Common::itoa(T value)
 {
-	string ret;
-	string tmp;
+    string ret;
+    string tmp;
 
-	if (value == 0) 
-	{
-		return "0";
-	}
-	if (value < 0) 
-	{
-		ret.append(1, '-');
-		value = -value;
-	}
-	while (value) 
-	{
-		tmp.append(1, value % 10 + '0');
-		value /= 10;
-	}
-	reverse(tmp.begin(), tmp.end());
-	ret.append(tmp);
+    if (value == 0) 
+    {
+        return "0";
+    }
+    if (value < 0) 
+    {
+        ret.append(1, '-');
+        value = -value;
+    }
+    while (value) 
+    {
+        tmp.append(1, value % 10 + '0');
+        value /= 10;
+    }
+    reverse(tmp.begin(), tmp.end());
+    ret.append(tmp);
 
-	return ret;
+    return ret;
 }
 
 } /* end of common */
