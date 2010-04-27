@@ -82,8 +82,8 @@ void Crawler::Download(const string& query, const size_t page, const string& dir
 
     if (curl) 
     {
-        string url("http://images.google.com.hk/images?hl=zh-CN&newwindow=1&safe=strict&tbs=isch:1&sa=N");
-        url.append("&q=");
+        string url("http://images.google.com.hk/images?");
+        url.append("q=");
         url.append(query);
         url.append("&start=");
         url.append(Common::itoa<size_t>(page * IMAGES_PER_PAGE));
