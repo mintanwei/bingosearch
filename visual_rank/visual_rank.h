@@ -23,7 +23,7 @@ class VisualRank
 public:
     VisualRank();
     virtual ~VisualRank();
-    void GetVisualRank(const std::string& path, const bingo::imagesimilarity::ImageSimilarity* judge);
+    void GetVisualRank(const std::string& path, const ImageSimilarity* judge);
     void Output(const std::string& path);
 private:
     size_t GetDirItemCount(const std::string& path);

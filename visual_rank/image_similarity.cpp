@@ -12,7 +12,7 @@ using namespace std;
 
 namespace bingo 
 {
-namespace imagesimilarity 
+namespace visualrank 
 {
 
 ImageSimilarity::ImageSimilarity()
@@ -28,5 +28,5 @@ double ImageSimilarity::GetSimilarity(const string& imgFileA, const string& imgF
     return 1.0;
 }
 
-} /* end of imagesimilarity */
+} /* end of visualrank */
 } /* end of bingo */

@@ -13,7 +13,6 @@
 
 using namespace std;
 using namespace bingo::visualrank;
-using namespace bingo::imagesimilarity;
 
 int main(int argc, const char *argv[])
 {

@@ -13,7 +13,7 @@
 
 namespace bingo 
 {
-namespace imagesimilarity 
+namespace visualrank 
 {
 
 class ImageSimilarity 
@@ -27,7 +27,7 @@ protected:
     
 };
 
-} /* end of imagesimilarity */
+} /* end of visualrank */
 } /* end of bingo */
 
 
