@@ -19,7 +19,6 @@
 using namespace std;
 using namespace bingo::log;
 using namespace bingo::common;
-using namespace bingo::imagesimilarity;
 
 namespace bingo 
 {
