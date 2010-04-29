@@ -8,11 +8,24 @@
 
 #include "image_similarity_histogram.h"
 
+using namespace std;
+
 namespace bingo 
 {
 namespace visualrank 
 {
-    
+
+ImageSimilarityHistogram::ImageSimilarityHistogram()
+{
+}
+
+ImageSimilarityHistogram::~ImageSimilarityHistogram()
+{
+}
+
+double ImageSimilarityHistogram::GetSimilarity(const string& imgFileA, const string& imgFileB) const
+{
+}
 
 } // end of visualrank 
 } // end of bingo 
