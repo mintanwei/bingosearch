@@ -9,6 +9,7 @@ using namespace std;
 
 struct Node
 {
+	string thumbnailUrl;
     string imageSrc;
     string pageUrl;
     string size;
@@ -76,10 +77,19 @@ int main(int argc, const char *argv[])
         A.reserve(visualRank.size());
         for (size_t i = 0; i < visualRank.size(); ++i) 
         {
-            curNode.imageSrc = metaData[4 * i];
-            curNode.pageUrl = metaData[4 * i + 1];
-            curNode.size = metaData[4 * i + 2];
-            curNode.format = metaData[4 * i + 3];
+			curNode.thumbnailUrl = metaData[5 * i];
+            curNode.imageSrc = metaData[5 * i + 1];
+            curNode.pageUrl = metaData[5 * i + 2];
+            curNode.size = metaData[5 * i + 3];
+			for (size_t j = 0; j < curNode.size.length(); ++j) 
+			{
+				if (curNode.size[j] == ' ') 
+				{
+					curNode.size[j] = 'x';
+					break;
+				}
+			}
+            curNode.format = metaData[5 * i + 4];
             curNode.rank = visualRank[i];
             curNode.id = i;
             A.push_back(curNode);
@@ -99,6 +109,7 @@ int main(int argc, const char *argv[])
         for (size_t i = 0; i < A.size(); ++i) 
         {
             out << A[i].id << endl;
+			out << A[i].thumbnailUrl << endl;
             out << A[i].imageSrc << endl;
             out << A[i].pageUrl << endl;
             out << A[i].size << endl;
