@@ -21,18 +21,37 @@ while (<QUERY>) {
                 if ($tmp =~ /" target\\x3d_blank","(.*?)".*?(http:\/\/t\d.gstatic.com\/images)/) {
                     print OUTPUT "$2?q=tbn:$1\n";
                 }
+				else {
+					print "\n";
+				}
                 # img url
                 if ($tmp =~ /imgurl\\x3d(.*?)\\x26/) {
                     print OUTPUT "$1\n";
                 }
+				else {
+					print "\n";
+				}
                 # img ref url
                 if ($tmp =~ /imgrefurl\\x3d(.*?)\\x26/) {
                     print OUTPUT "$1\n";
                 }
-                # img size & img format
-                if ($tmp =~ /"(\d+ x \d+ - \d+k)","(.*?)"/) {
-                    print OUTPUT "$1\n$2\n";
+				else {
+					print "\n";
+				}
+                # size 
+                if ($tmp =~ /" target\\x3d_blank",".*?",".*?",(".*?"),(".*?")/) {
+                    print OUTPUT "$1 $2\n";
                 }
+				else {
+					print "\n";
+				}
+				# format
+				if ($tmp =~ /times; \d*? - (\d*?k)","(.*?)"/) {
+					print OUTPUT "$1 $2\n";
+				}
+				else {
+					print "\n";
+				}
             }
         }
         close NOW;

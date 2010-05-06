@@ -82,7 +82,7 @@ void Crawler::Download(const string& query, const size_t page, const string& dir
 
     if (curl) 
     {
-        string url("http://images.google.com/images?");
+        string url("http://images.google.com.hk/images?");
         url.append("q=");
         url.append(query);
         url.append("&start=");
