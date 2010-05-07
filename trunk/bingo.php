@@ -5,12 +5,12 @@
 	<body>
 		<center>
 			<h1>Bingo!</h1> <form method="get">
-				<input type="text" name="query" />
+				<input type="text" name="q" />
 				<input type ="submit" value="search" />
 			</form>
 		</center>
 <?php
-$tmp = $_GET["query"];
+$tmp = $_GET["q"];
 $max_img = $_GET["m"];
 if ($max_img == "") {
 	$max_img = 20;
