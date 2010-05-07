@@ -92,10 +92,11 @@ void Crawler::Download(const string& query, const size_t page, const string& dir
         Log::Output(url, Log::DEBUG);
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
+		curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 16);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
 		size_t clock = 0;
-        while (curl_easy_perform(curl) != CURLE_OK && (++clock < 10)) ;
+        while (curl_easy_perform(curl) != CURLE_OK && (++clock < 5)) ;
         curl_easy_cleanup(curl);
     }
     else 
