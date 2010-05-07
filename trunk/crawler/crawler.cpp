@@ -94,7 +94,7 @@ void Crawler::Download(const string& query, const size_t page, const string& dir
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writer);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
-        curl_easy_perform(curl);
+        while (curl_easy_perform(curl) != CURLE_OK) ;
         curl_easy_cleanup(curl);
     }
     else 
