@@ -79,16 +79,15 @@ else if ($tmp != "") {
 			echo "ERROR: PAGE_URL NOT FOUND!";
 		}
 		# size
-		if (preg_match('/" target\\\x3d_blank",".*?",".*?","(.*?)","(.*?)"/', $cur, $m)) {
-			$size = "$m[1]x$m[2] ";
+		if (preg_match('/"(\d*?) \&times; (\d*?) - (\d*?k)"/', $cur, $m)) {
+			$size = "$m[1]x$m[2] $m[3]";
 		}
 		else {
 			echo "ERROR: IMAGE_SIZE NOT FOUND!\n";
 		}
 		# format
-		if (preg_match('/times; \d*? - (\d*?k)","(.*?)"/', $cur, $m)) {
-			$size = "$size $m[1]";
-			$format = "$m[2]";
+		if (preg_match('/times; \d*? - \d*?k","(.*?)"/', $cur, $m)) {
+			$format = "$m[1]";
 		}
 		else {
 			echo "ERROR: IMAGE_FORMAT NOT FOUND!\n";
