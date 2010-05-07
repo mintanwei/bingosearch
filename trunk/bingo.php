@@ -4,7 +4,14 @@
 	</head>
 	<body>
 		<center>
-			<h1>Bingo!</h1> <form method="get">
+			<h1><font color="blue" face="Times" size=8>B</font>
+                <font color="#EA0000" face="Times" size=8>i</font>
+				<font color="#EAC100" face="Times" size=8>n</font>
+				<font color="blue" face="Times" size=8>g</font>
+				<font color="green" face="Times" size=8>o</font>
+				<font color="#EA0000" face="Times" size=8>!</font>
+			</h1> 
+			<form method="get">
 				<input type="text" name="q" />
 				<input type ="submit" value="search" />
 			</form>
@@ -33,7 +40,7 @@ if (file_exists("index/$tmp") && $tmp != "") {
 		if ($cnt % 5 == 0) {
 			echo "<tr>";
 		}
-		echo "<td align='left' width='17%' style='padding-top: 16px;'><img src='images/$tmp/$id'>";
+		echo "<td align='left' width='20%' style='padding-top: 16px;'><img src='images/$tmp/$id'>";
 		echo "<div><a href='$image_src'>查看原图</a>";
 		echo "<a href='$page_url'>查看原页面</a></div>";
 		echo "<div>$size $format</div>";
@@ -95,7 +102,7 @@ else if ($tmp != "") {
 		if ($cnt % 5 == 0) {
 			echo "<tr>";
 		}
-		echo "<td align='left' width='17%' style='padding-top: 16px;'><img src='$thubnail_src'>";
+		echo "<td align='left' width='20%' style='padding-top: 16px;'><img src='$thubnail_src'>";
 		echo "<div><a href='$image_src'>查看原图</a>";
 		echo "<a href='$page_url'>查看原页面</a></div>";
 		echo "<div>$size $format</div>";
