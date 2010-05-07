@@ -18,7 +18,13 @@
 		</center>
 <?php
 error_reporting(E_ERROR); 
+
+$fp = fopen("query_log", "ar");
 $query = $_GET["q"];
+$ip = $_SERVER['REMOTE_ADDR'];
+fwrite($fp, "$query $ip\n");
+fclose($fp);
+
 $max_img = $_GET["m"];
 $start = $_GET["p"];
 
@@ -59,6 +65,7 @@ if (file_exists("index/$query") && $query != "") {
 		}
 		++ $cnt;
 	}
+	fclose($fp);
 	echo "</tbody>";
 	echo "</table>";
 	echo "</div>";
