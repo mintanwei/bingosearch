@@ -48,7 +48,7 @@ void Crawler::GetQueryList(const string& file)
         exit(1);
     }
     string query;
-    while (fin >> query) 
+    while (getline(fin, query)) 
     {
         mQueryList.insert(query);
     }
