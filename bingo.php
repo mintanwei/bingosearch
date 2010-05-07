@@ -17,15 +17,18 @@
 			</form>
 		</center>
 <?php
+error_reporting(E_ERROR); 
 $query = $_GET["q"];
 $max_img = $_GET["m"];
 $start = $_GET["p"];
+
 if ($max_img == "") {
 	$max_img = 20;
 }
 if ($start == "") {
 	$start = 0;
 }
+
 if (file_exists("index/$query") && $query != "") {
 	$fp = fopen("index/$query", "r");
 	$cnt = 0;
@@ -45,7 +48,8 @@ if (file_exists("index/$query") && $query != "") {
 		if ($cnt % 5 == 0) {
 			echo "<tr>";
 		}
-		echo "<td align='left' width='20%' style='padding-top: 16px;'><img src='images/$query/$id'>";
+		echo "<td align='center' width='20%' style='padding-top: 16px;'>
+			  <img src='images/$query/$id'>";
 		echo "<div><a href='$image_src'><font color='blue'>查看原图</font></a>";
 		echo "<a href='$page_url'><font color='green'> 查看原页面</font></a></div>";
 		echo "<div>$size $format</div>";
@@ -59,6 +63,7 @@ if (file_exists("index/$query") && $query != "") {
 	echo "</table>";
 	echo "</div>";
 }
+
 else if ($query != "") {
 	$first_one = $start * 20;
 	$url = "http://images.google.com.hk/images?q=$query&start=$first_one&ndsp=$max_img&hl=zh-CN";
@@ -108,7 +113,7 @@ else if ($query != "") {
 		if ($cnt % 5 == 0) {
 			echo "<tr>";
 		}
-		echo "<td align='left' width='20%' style='padding-top: 16px;'><img src='$thubnail_src'>";
+		echo "<td align='center' width='20%' style='padding-top: 16px;'><img src='$thubnail_src'>";
 		echo "<div><a href='$image_src'><font color='blue'>查看原图</font></a>";
 		echo "<a href='$page_url'><font color='green'> 查看原页面</font></a></div>";
 		echo "<div>$size $format</div>";
@@ -121,16 +126,25 @@ else if ($query != "") {
 			break;
 		}
 	}
+	echo "</tbody>";
+	echo "</table>";
+	echo "</div>";
 }
-if ($start == 0) {
-	$next = $start + 1;
-	echo "<div align='center'><a href='bingo.php?q=$query&p=$next'>Next &gt;&gt;</a></div>";
+if ($query != "" && $cnt == 0) {
+	echo "<div align='center'><font color='red'>dangerous keyword</font></div>";
 }
-else {
-	$next = $start + 1;
-	$pre = $start - 1;
-	echo "<div align='center'><a href='bingo.php?q=$query&p=$pre'>&lt;&lt; Previous</a>";
-	echo "<a href='bingo.php?q=$query&p=$next'>&nbsp;&nbsp;Next &gt&gt</a></div>";
+else if ($query != "" && $cnt != 0) {
+	echo "<br>";
+	if ($start == 0) {
+		$next = $start + 1;
+		echo "<div align='center'><a href='bingo.php?q=$query&p=$next'>Next &gt;&gt;</a></div>";
+	}
+	else {
+		$next = $start + 1;
+		$pre = $start - 1;
+		echo "<div align='center'><a href='bingo.php?q=$query&p=$pre'>&lt;&lt; Previous</a>";
+		echo "<a href='bingo.php?q=$query&p=$next'>&nbsp;&nbsp;Next &gt&gt</a></div>";
+	}
 }
 ?>
 	</body>
