@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta content="text/html; charset=UTF8">
 		<title>Bingo!</title>
 	</head>
 	<body>
@@ -20,7 +21,7 @@
 error_reporting(E_ERROR); 
 
 $fp = fopen("query_log", "ar");
-$query = $_GET["q"];
+$query = urldecode(urlencode($_GET["q"]));
 $ip = $_SERVER['REMOTE_ADDR'];
 fwrite($fp, "$query $ip\n");
 fclose($fp);
