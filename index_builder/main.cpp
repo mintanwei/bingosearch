@@ -81,14 +81,6 @@ int main(int argc, const char *argv[])
             curNode.imageSrc = metaData[5 * i + 1];
             curNode.pageUrl = metaData[5 * i + 2];
             curNode.size = metaData[5 * i + 3];
-			for (size_t j = 0; j < curNode.size.length(); ++j) 
-			{
-				if (curNode.size[j] == ' ') 
-				{
-					curNode.size[j] = 'x';
-					break;
-				}
-			}
             curNode.format = metaData[5 * i + 4];
             curNode.rank = visualRank[i];
             curNode.id = i;

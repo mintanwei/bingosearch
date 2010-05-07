@@ -39,15 +39,15 @@ while (<QUERY>) {
 					print "\n";
 				}
                 # size 
-                if ($tmp =~ /" target\\x3d_blank",".*?",".*?","(.*?)","(.*?)"/) {
-                    print OUTPUT "$1 $2 ";
+                if ($tmp =~ /"(\d*?) \&times; (\d*?) - (\d*?k)"/) {
+                    print OUTPUT "$1x$2 $3\n";
                 }
 				else {
 					print "\n";
 				}
 				# format
-				if ($tmp =~ /times; \d*? - (\d*?k)","(.*?)"/) {
-					print OUTPUT "$1\n$2\n";
+				if ($tmp =~ /times; \d*? - \d*?k","(.*?)"/) {
+					print OUTPUT "$1\n";
 				}
 				else {
 					print "\n";
