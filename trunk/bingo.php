@@ -74,7 +74,7 @@ if (file_exists("index/$query") && $query != "") {
 
 else if ($query != "") {
 	$first_one = $start * 20;
-	$url = "http://images.google.com.hk/images?q=$query&start=$first_one&ndsp=$max_img&hl=zh-CN";
+	$url = "http://images.google.com.hk/images?q=$query&start=$first_one&ndsp=$max_img&hl=en";
 	$contents = file_get_contents($url); 
 	preg_match_all('/\["\/imgres\?.*?""]/', $contents, $matches);
 	echo "<div style='position: relative;'>";
