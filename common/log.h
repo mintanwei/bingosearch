@@ -15,7 +15,7 @@
 
 namespace bingo 
 {
-namespace log 
+namespace common
 {
 
 class Log 
@@ -37,29 +37,7 @@ public:
 private:
 };
 
-void Log::Output(const std::string& content, LogLevel logLevel)
-{
-    if (logLevel < LOG_LEVEL) 
-    {
-        return ;
-    }
-    switch (logLevel)
-    {
-        case DEBUG:
-            std::cerr << "LOG_DEBUG: " << content << std::endl;
-            break;
-        case WARNING:
-            std::cerr << "LOG_WARNING: " << content << std::endl;
-            break;
-        case ERROR:
-            std::cerr << "LOG_ERROR: " << content << std::endl;
-            break;
-        default:
-            break;
-    }
-}
-
-} /* end of log */
+} /* end of common */
 } /* end of bingo */
 
 
