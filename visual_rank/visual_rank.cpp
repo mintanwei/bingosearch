@@ -11,10 +11,11 @@
 #include "common.h"
 #include <sys/types.h>
 #include <dirent.h>
+#include <cmath>
 #include <cstdlib>
 #include <cstring>
 #include <fstream>
-#include <cmath>
+#include <algorithm>
 
 using namespace std;
 using namespace bingo::common;
@@ -32,7 +33,7 @@ VisualRank::~VisualRank()
 {
 }
 
-void VisualRank::GetVisualRank(const string& path, const ImageSimilarity* judge)
+void VisualRank::GetVisualRank(const string& path, ImageSimilarity* judge)
 {
     if (judge == NULL) 
     {
@@ -40,8 +41,7 @@ void VisualRank::GetVisualRank(const string& path, const ImageSimilarity* judge)
         exit(1);
     }
 
-    mImageCount = GetDirItemCount(path);
-
+	mImageCount = min((size_t)(IMAGE_PER_PATH), GetDirItemCount(path));
     if (mImageCount == 0) 
     {
         Log::Output(string("NO IMAGE FILE IN ") + path, Log::ERROR);

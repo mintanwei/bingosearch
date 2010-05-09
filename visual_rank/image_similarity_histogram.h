@@ -21,7 +21,7 @@ class ImageSimilarityHistogram : public ImageSimilarity
 public:
     ImageSimilarityHistogram();
     virtual ~ImageSimilarityHistogram();
-    virtual double GetSimilarity(const std::string& imgFileA, const std::string& imgFileB) const;
+    virtual double GetSimilarity(const std::string& imgFileA, const std::string& imgFileB);
 
 private:
     /* data */
