@@ -31,7 +31,7 @@ private:
     bool GaussTpivot(size_t n);
 
 private:
-    static const size_t IMAGE_PER_PATH = 32;
+    static const size_t IMAGE_PER_PATH = 1024;
     static const double DAMPING_FACTOR = 0.85;
     static const double EPS = 1e-8;
 

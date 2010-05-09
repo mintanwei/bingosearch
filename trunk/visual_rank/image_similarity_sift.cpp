@@ -33,7 +33,7 @@ size_t ImageSimilaritySift::GetDis(const vector<int>& va, const vector<int>& vb)
 	size_t ret = 0;
 	for (size_t i = 0; i < 128; ++i)
 	{
-		ret += (va[i] - va[i]) * (vb[i] - vb[i]);
+		ret += (va[i] - vb[i]) * (va[i] - vb[i]);
 	}
 	return ret;
 }
@@ -53,7 +53,8 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 		exit(1);
 	}
 
-	string pgmA(fileA);
+	string pgmA("tmp/");
+	pgmA.append(fileA);
 	pgmA.append(".pgm");
 	if (mFileSet.find(fileA) == mFileSet.end()) 
 	{
@@ -61,7 +62,8 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 		system(((string)("../third_party/siftpp/sift ") + pgmA).c_str());
 		mFileSet.insert(fileA);
 	}
-	string pgmB(fileB);
+	string pgmB("tmp/");
+	pgmB.append(fileB);
 	pgmB.append(".pgm");
 	if (mFileSet.find(fileB) == mFileSet.end()) 
 	{
@@ -70,7 +72,8 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 		mFileSet.insert(fileB);
 	}
 
-	string keyA(fileA);
+	string keyA("tmp/");
+	keyA.append(fileA);
 	keyA.append(".key");
 	ifstream inA(keyA.c_str());
 	if (inA.fail()) 
@@ -78,7 +81,8 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 		Log::Output((string)("FAIL TO OPEN ") + keyA, Log::ERROR);
 		exit(1);
 	}
-	string keyB(fileB);
+	string keyB("tmp/");
+	keyB.append(fileB);
 	keyB.append(".key");
 	ifstream inB(keyB.c_str());
 	if (inB.fail()) 
@@ -126,7 +130,7 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 	for (size_t i = 0; i < va.size(); ++i) 
 	{   
 		size_t nearest = MAX_VECTOR_DIS;
-		size_t second_nearest = MAX_VECTOR_DIS;
+		size_t secondNearest = MAX_VECTOR_DIS;
 		for (size_t j = 0; j < vb.size(); ++j) 
 		{   
 			size_t cur = GetDis(va[i], vb[j]);
@@ -134,12 +138,12 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 			{   
 				nearest = cur;  
 			}   
-			else if (cur < second_nearest) 
+			else if (cur < secondNearest) 
 			{   
-				second_nearest = cur;
+				secondNearest = cur;
 			}   
 		}   
-		if (nearest < second_nearest * MATCH_THRESHOLD) 
+		if (nearest < secondNearest * MATCH_THRESHOLD) 
 		{
 			++matchCnt;
 		}
