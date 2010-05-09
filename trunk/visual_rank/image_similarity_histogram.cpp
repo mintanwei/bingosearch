@@ -23,7 +23,7 @@ ImageSimilarityHistogram::~ImageSimilarityHistogram()
 {
 }
 
-double ImageSimilarityHistogram::GetSimilarity(const string& imgFileA, const string& imgFileB) const
+double ImageSimilarityHistogram::GetSimilarity(const string& imgFileA, const string& imgFileB) 
 {
 }
 

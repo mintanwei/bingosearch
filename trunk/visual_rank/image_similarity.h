@@ -21,7 +21,7 @@ class ImageSimilarity
 public:
     ImageSimilarity();
     virtual ~ImageSimilarity();
-    virtual double GetSimilarity(const std::string& imgFileA, const std::string& imgFileB) const;
+    virtual double GetSimilarity(const std::string& imgFileA, const std::string& imgFileB);
 
 protected:
     
