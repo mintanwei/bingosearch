@@ -7,8 +7,8 @@
  */
 
 #include "visual_rank.h"
-#include "common.h"
 #include "log.h"
+#include "common.h"
 #include <sys/types.h>
 #include <dirent.h>
 #include <cstdlib>
@@ -17,7 +17,6 @@
 #include <cmath>
 
 using namespace std;
-using namespace bingo::log;
 using namespace bingo::common;
 
 namespace bingo 

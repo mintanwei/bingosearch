@@ -25,7 +25,7 @@ int main(int argc, const char *argv[])
     }
 
     string query;
-    ImageSimilarity* judge = new ImageSimilarity();
+    ImageSimilarity* judge = new ImageSimilaritySift();
     VisualRank visualRank;
     while (in >> query) 
     {

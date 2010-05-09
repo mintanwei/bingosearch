@@ -10,6 +10,7 @@
 #define BINGO_VISUAL_RANK_VISUAL_RANK_H
 
 #include "image_similarity.h"
+#include "image_similarity_sift.h"
 #include <vector>
 #include <string>
 

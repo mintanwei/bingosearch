@@ -14,7 +14,6 @@
 #include "sys/stat.h"
 
 using namespace std;
-using namespace bingo::log;
 using namespace bingo::common;
 
 namespace bingo 
