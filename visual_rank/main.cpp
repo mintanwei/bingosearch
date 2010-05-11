@@ -16,13 +16,27 @@ using namespace std;
 using namespace bingo::common;
 using namespace bingo::visualrank;
 
+string Transform(const string& s)
+{
+	string ret;
+	for (size_t i = 0; i < s.size(); ++i) 
+	{
+		if (s[i] == ' ') 
+		{
+			ret += '\\';
+		}
+		ret += s[i];
+	}
+	return ret;
+}
+
 int main(int argc, const char *argv[])
 {
     ifstream in("../data/query_list");
 
     if (in.fail()) 
     {
-		Log::Output("visual_rank main.cpp : FAIL TO OPEN FILE ../data/query_list", Log::ERROR);
+		Log::Output("visual_rank main.cpp", "FAIL TO OPEN FILE ../data/query_list", Log::ERROR);
         exit(1);
     }
 
@@ -34,6 +48,7 @@ int main(int argc, const char *argv[])
 
     while (getline(in, query)) 
     {
+		query = Transform(query);
         visualRank.GetVisualRank(string("../data/images/") + query + "/", judge);
         visualRank.Output(string("../data/visual_rank/") + query);
         visualRank.GetVisualRank(string("../data/images/") + query + "/", judgeSift);
