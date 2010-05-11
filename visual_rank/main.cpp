@@ -6,12 +6,14 @@
  * @date 2010-04-19
  */
 
+#include "log.h"
 #include "visual_rank.h"
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 
 using namespace std;
+using namespace bingo::common;
 using namespace bingo::visualrank;
 
 int main(int argc, const char *argv[])
@@ -20,19 +22,27 @@ int main(int argc, const char *argv[])
 
     if (in.fail()) 
     {
-        cerr << "FAIL TO OPEN FILE ../data/query_list" << endl;
+		Log::Output("FAIL TO OPEN FILE ../data/query_list", Log::ERROR);
         exit(1);
     }
 
     string query;
-    ImageSimilarity* judge = new ImageSimilaritySift();
     VisualRank visualRank;
+
+    ImageSimilarity* judge = new ImageSimilarity();
     while (in >> query) 
     {
         visualRank.GetVisualRank(string("../data/images/") + query + "/", judge);
         visualRank.Output(string("../data/visual_rank/") + query);
     }
+    delete judge;
 
+    judge = new ImageSimilaritySift();
+    while (in >> query) 
+    {
+        visualRank.GetVisualRank(string("../data/images/") + query + "/", judge);
+        visualRank.Output(string("../data/visual_rank_sift/") + query);
+    }
     delete judge;
 
     return 0;

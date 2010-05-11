@@ -32,7 +32,7 @@ private:
 private:
 	std::set<std::string> mFileSet;
 	static const size_t MAX_VECTOR_DIS = 2000000000;
-	static const double MATCH_THRESHOLD = 0.3;
+	static const double MATCH_THRESHOLD = 0.45;
 };
 
 } /* end of visualrank */
