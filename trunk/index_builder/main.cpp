@@ -116,8 +116,8 @@ int main(int argc, const char *argv[])
 	string query;
 	while (in >> query) 
 	{
-		BuildIndex(query, "../data/visual_rank", "../data/index");
-		BuildIndex(query, "../data/visual_rank_sift", "../data/index_sift");
+		BuildIndex(query, "../data/visual_rank/", "../data/index");
+		BuildIndex(query, "../data/visual_rank_sift/", "../data/index_sift");
 	}
 	return 0;
 }

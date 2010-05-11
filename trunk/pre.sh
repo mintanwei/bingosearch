@@ -9,6 +9,7 @@ mkdir -p pages
 mkdir -p index
 mkdir -p meta_data
 mkdir -p visual_rank
+mkdir -p visual_rank_sift
 cd ..
 mv query_list data/
 cd ..

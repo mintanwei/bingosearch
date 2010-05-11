@@ -10,7 +10,7 @@ while (<QUERY>) {
     chomp(my $tmp = $_);
     my $file = "../data/meta_data/$tmp";
     open OUTPUT, ">$file" or die "FAIL TO OPEN $file";
-    foreach (0...49) {
+    foreach (0...4) {
         my $file = "../data/pages/$tmp/$_";
         open NOW, $file or die "FAIL TO OPEN $file";
         while (<NOW>) {
