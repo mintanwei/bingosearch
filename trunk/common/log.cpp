@@ -13,7 +13,7 @@ namespace bingo
 namespace common 
 {
 
-void Log::Output(const std::string& content, LogLevel logLevel)
+void Log::Output(const std::string& file, const std::string& content, LogLevel logLevel)
 {
     if (logLevel < LOG_LEVEL) 
     {
@@ -22,13 +22,13 @@ void Log::Output(const std::string& content, LogLevel logLevel)
     switch (logLevel)
     {
         case DEBUG:
-            std::cerr << "LOG_DEBUG: " << content << std::endl;
+            std::cerr << "LOG_DEBUG: " << file << " : " << content << std::endl;
             break;
         case WARNING:
-            std::cerr << "LOG_WARNING: " << content << std::endl;
+            std::cerr << "LOG_WARNING: " << file << " : " << content << std::endl;
             break;
         case ERROR:
-            std::cerr << "LOG_ERROR: " << content << std::endl;
+            std::cerr << "LOG_ERROR: " << file << " : " <<  content << std::endl;
             break;
         default:
             break;

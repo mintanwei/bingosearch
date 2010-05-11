@@ -32,7 +32,7 @@ enum LogLevel
 public:
     Log();
     virtual ~Log();
-    static void Output(const std::string& content, LogLevel logLevel);
+    static void Output(const std::string& file, const std::string& content, LogLevel logLevel);
 
 private:
 };

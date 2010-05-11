@@ -8,6 +8,7 @@ open QUERY, $file or die "FAIL TO OPEN $file";
 
 while (<QUERY>) {
     chomp(my $tmp = $_);
+	print "$tmp\n";
     my $file = "../data/meta_data/$tmp";
     open IN, $file or die "FAIL TO OPEN $file";
     $file = "../data/images/$tmp";

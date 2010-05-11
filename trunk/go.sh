@@ -1,4 +1,6 @@
-cd crawler
+cd query_preprocessor
+sh query_preprocessor.sh
+cd ../crawler
 ./crawler
 cd ../parser/
 ./parser.pl

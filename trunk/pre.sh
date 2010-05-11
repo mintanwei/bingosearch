@@ -7,6 +7,7 @@ cd data
 mkdir -p images
 mkdir -p pages
 mkdir -p index
+mkdir -p index_sift
 mkdir -p meta_data
 mkdir -p visual_rank
 mkdir -p visual_rank_sift

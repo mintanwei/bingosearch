@@ -43,13 +43,13 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 	ifstream in1(fileA.c_str());
 	if (in1.fail()) 
 	{
-		Log::Output((string)("visual_rank image_similarity_sift.cpp : FAIL TO OPEN ") + fileA, Log::ERROR);
+		Log::Output("image_similarity_sift.cpp", (string)("FAIL TO OPEN ") + fileA, Log::ERROR);
 		exit(1);
 	}
 	ifstream in2(fileB.c_str());
 	if (in2.fail()) 
 	{
-		Log::Output((string)("visual_rank image_similarity_sift.cpp : FAIL TO OPEN ") + fileB, Log::ERROR);
+		Log::Output("image_similarity_sift.cpp", (string)("FAIL TO OPEN ") + fileB, Log::ERROR);
 		exit(1);
 	}
 
@@ -75,7 +75,7 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 	ifstream inA(keyA.c_str());
 	if (inA.fail()) 
 	{
-		Log::Output((string)("visual_rank image_similarity_sift.cpp : FAIL TO OPEN ") + keyA, Log::ERROR);
+		Log::Output("image_similarity_sift.cpp", (string)("visual_rank image_similarity_sift.cpp : FAIL TO OPEN ") + keyA, Log::ERROR);
 		exit(1);
 	}
 	string keyB(fileB);
@@ -83,7 +83,7 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 	ifstream inB(keyB.c_str());
 	if (inB.fail()) 
 	{
-		Log::Output((string)("visual_rank image_similarity_sift.cpp : FAIL TO OPEN ") + keyB, Log::ERROR);
+		Log::Output("image_similarity_sift.cpp", (string)("visual_rank image_similarity_sift.cpp : FAIL TO OPEN ") + keyB, Log::ERROR);
 		exit(1);
 	}
 
