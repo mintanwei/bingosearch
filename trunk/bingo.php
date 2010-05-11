@@ -52,7 +52,6 @@ else {
 	die;
 }
 
-
 $line_cnt = count(file("$index$query"));
 
 if (file_exists("$index$query") && $query != "" && $line_cnt >= ($page + 1) * $max_img * 8) {
