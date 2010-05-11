@@ -40,7 +40,7 @@ void BuildIndex(const string& query, const char* visualRankPath, const char* ind
 	ifstream in1(file.c_str());
 	if (in1.fail()) 
 	{
-		Log::Output((string)("FAIL TO OPEN FILE ../data/meta_data/") + query, Log::ERROR);
+		Log::Output("index_builder", (string)("FAIL TO OPEN FILE ../data/meta_data/") + query, Log::ERROR);
 		exit(1);
 	}
 
@@ -55,7 +55,7 @@ void BuildIndex(const string& query, const char* visualRankPath, const char* ind
 	ifstream in2(file.c_str());
 	if (in2.fail()) 
 	{
-		Log::Output((string)("FAIL TO OPEN FILE ") + visualRankPath + query, Log::ERROR);
+		Log::Output("index_builder", (string)("FAIL TO OPEN FILE ") + visualRankPath + query, Log::ERROR);
 		exit(1);
 	}
 	double tmp;
@@ -85,7 +85,7 @@ void BuildIndex(const string& query, const char* visualRankPath, const char* ind
 
 	if (out.fail()) 
 	{
-		Log::Output((string)("FAIL TO CREATE FILE ") + indexPath + query, Log::ERROR);
+		Log::Output("index_builder", (string)("FAIL TO CREATE FILE ") + indexPath + query, Log::ERROR);
 		exit(1);
 	}
 
@@ -109,7 +109,7 @@ int main(int argc, const char *argv[])
 
 	if (in.fail()) 
 	{
-		Log::Output("FAIL TO OPEN FILE ../data/query_list", Log::ERROR);
+		Log::Output("index_builder main.cpp", "FAIL TO OPEN FILE ../data/query_list", Log::ERROR);
 		exit(1);
 	}
 
