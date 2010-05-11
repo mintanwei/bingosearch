@@ -44,8 +44,8 @@ void VisualRank::GetVisualRank(const string& path, ImageSimilarity* judge)
 	mImageCount = min((size_t)(IMAGE_PER_PATH), GetDirItemCount(path));
     if (mImageCount == 0) 
     {
-        Log::Output(string("NO IMAGE FILE IN ") + path, Log::ERROR);
-        exit(1);
+        Log::Output(string("NO IMAGE FILE IN ") + path, Log::WARNING);
+		return;
     }
 
     // get basic similarity matrix
@@ -115,8 +115,8 @@ size_t VisualRank::GetDirItemCount(const string& path)
 
     if ((dir = opendir(path.c_str())) == NULL)
     {
-        Log::Output(string("CAN NOT OPEN DIR ") + path, Log::ERROR); 
-        exit(1);
+        Log::Output(string("CAN NOT OPEN DIR ") + path, Log::WARNING); 
+		return 0;
     }
     while (dirEnt = readdir(dir)) 
     {
