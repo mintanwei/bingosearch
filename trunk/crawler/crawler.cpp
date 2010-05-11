@@ -43,7 +43,7 @@ void Crawler::GetQueryList(const string& file)
     ifstream fin(file.c_str());
     if (fin.fail()) 
     {
-        Log::Output((string)("FAIL TO OPEN FILE") + file, Log::ERROR);
+        Log::Output("crawler.cpp", (string)("FAIL TO OPEN FILE") + file, Log::ERROR);
         exit(1);
     }
     string query;
@@ -75,7 +75,7 @@ void Crawler::Download(const string& query)
 
 void Crawler::Download(const string& query, const size_t page, const string& dir)
 {
-    Log::Output(Common::itoa<size_t>(page) + " " + query, Log::DEBUG);
+    Log::Output("crawler.cpp", Common::itoa<size_t>(page) + " " + query, Log::DEBUG);
     string buffer;
     CURL* curl = curl_easy_init();   
 
@@ -88,7 +88,7 @@ void Crawler::Download(const string& query, const size_t page, const string& dir
         url.append(Common::itoa<size_t>(page * IMAGES_PER_PAGE));
         url.append("&ndsp=");
         url.append(Common::itoa<size_t>(IMAGES_PER_PAGE));
-        Log::Output(url, Log::DEBUG);
+        Log::Output("crawler.cpp", url, Log::DEBUG);
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
 		curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 16);
@@ -100,7 +100,7 @@ void Crawler::Download(const string& query, const size_t page, const string& dir
     }
     else 
     {
-        Log::Output("FAIL TO INIT CURL", Log::ERROR);
+        Log::Output("crawler.cpp", "FAIL TO INIT CURL", Log::ERROR);
         exit(1);
     }
     string file(dir);
@@ -109,7 +109,7 @@ void Crawler::Download(const string& query, const size_t page, const string& dir
     ofstream fout(file.c_str());
     if (fout.fail()) 
     {
-        Log::Output(string("FAIL TO CREATE FILE ") + file, Log::ERROR);
+        Log::Output("crawler.cpp", string("FAIL TO CREATE FILE ") + file, Log::ERROR);
         exit(1);
     }
     fout << buffer;
