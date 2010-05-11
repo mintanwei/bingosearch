@@ -32,7 +32,7 @@ int main(int argc, const char *argv[])
     ImageSimilarity* judge = new ImageSimilarity();
 	ImageSimilarity* judgeSift = new ImageSimilaritySift();
 
-    while (in >> query) 
+    while (getline(in, query)) 
     {
         visualRank.GetVisualRank(string("../data/images/") + query + "/", judge);
         visualRank.Output(string("../data/visual_rank/") + query);
