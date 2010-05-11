@@ -55,7 +55,6 @@ else {
 $line_cnt = count(file("$index$query"));
 
 if (file_exists("$index$query") && $query != "" && $line_cnt >= ($page + 1) * $max_img * 8) {
-	$can_use_algo = 1;
 	$fp = fopen("$index$query", "r");
 	$cnt = 0;
 	echo "<div style='position: relative;'>";
