@@ -53,8 +53,7 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 		exit(1);
 	}
 
-	string pgmA("tmp/");
-	pgmA.append(fileA);
+	string pgmA(fileA);
 	pgmA.append(".pgm");
 	if (mFileSet.find(fileA) == mFileSet.end()) 
 	{
@@ -62,8 +61,7 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 		system(((string)("../third_party/siftpp/sift ") + pgmA).c_str());
 		mFileSet.insert(fileA);
 	}
-	string pgmB("tmp/");
-	pgmB.append(fileB);
+	string pgmB(fileB);
 	pgmB.append(".pgm");
 	if (mFileSet.find(fileB) == mFileSet.end()) 
 	{
@@ -72,8 +70,7 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 		mFileSet.insert(fileB);
 	}
 
-	string keyA("tmp/");
-	keyA.append(fileA);
+	string keyA(fileA);
 	keyA.append(".key");
 	ifstream inA(keyA.c_str());
 	if (inA.fail()) 
@@ -81,8 +78,7 @@ double ImageSimilaritySift::GetSimilarity(const string& fileA, const string& fil
 		Log::Output((string)("FAIL TO OPEN ") + keyA, Log::ERROR);
 		exit(1);
 	}
-	string keyB("tmp/");
-	keyB.append(fileB);
+	string keyB(fileB);
 	keyB.append(".key");
 	ifstream inB(keyB.c_str());
 	if (inB.fail()) 

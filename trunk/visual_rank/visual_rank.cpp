@@ -120,10 +120,19 @@ size_t VisualRank::GetDirItemCount(const string& path)
     }
     while (dirEnt = readdir(dir)) 
     {
-        if (isdigit(dirEnt->d_name[0]))
-        {
-            ++itemCount;
-        }
+		bool isImage = true;
+		for (size_t i = 0; dirEnt->d_name[i]; ++i) 
+		{
+			if (!isdigit(dirEnt->d_name[i])) 
+			{
+				isImage = false;
+				break;
+			}
+		}
+		if (isImage) 
+		{
+			++itemCount;
+		}
     }
     closedir(dir);
     return itemCount;
