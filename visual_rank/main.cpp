@@ -22,7 +22,7 @@ int main(int argc, const char *argv[])
 
     if (in.fail()) 
     {
-		Log::Output("FAIL TO OPEN FILE ../data/query_list", Log::ERROR);
+		Log::Output("visual_rank main.cpp : FAIL TO OPEN FILE ../data/query_list", Log::ERROR);
         exit(1);
     }
 
@@ -30,20 +30,18 @@ int main(int argc, const char *argv[])
     VisualRank visualRank;
 
     ImageSimilarity* judge = new ImageSimilarity();
+	ImageSimilarity* judgeSift = new ImageSimilaritySift();
+
     while (in >> query) 
     {
         visualRank.GetVisualRank(string("../data/images/") + query + "/", judge);
         visualRank.Output(string("../data/visual_rank/") + query);
-    }
-    delete judge;
-
-    judge = new ImageSimilaritySift();
-    while (in >> query) 
-    {
-        visualRank.GetVisualRank(string("../data/images/") + query + "/", judge);
+        visualRank.GetVisualRank(string("../data/images/") + query + "/", judgeSift);
         visualRank.Output(string("../data/visual_rank_sift/") + query);
     }
+
     delete judge;
+    delete judgeSift;
 
     return 0;
 }
