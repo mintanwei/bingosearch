@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<meta content="text/html; charset=UTF8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF8">
 		<title>Bingo!</title>
 	</head>
 	<body>
@@ -19,6 +19,7 @@
 		</center>
 <?php
 error_reporting(E_ERROR); 
+Header("Content-Type: text/html; charset=utf-8");
 
 $fp = fopen("query_log", "ar");
 $query = urldecode(urlencode($_GET["q"]));
@@ -49,6 +50,7 @@ else if ($method == 1) {
 else {
 	die;
 }
+
 
 $line_cnt = count(file("$index$query"));
 
@@ -177,6 +179,8 @@ else if ($query != "" && $cnt != 0) {
 		echo "<a href='bingo.php?q=$query&p=$next&m=$method'>&nbsp;&nbsp;Next &gt&gt</a></div>";
 	}
 }
+echo "<div align='right'><a href='bingo.php?q=$query&p=$page&m=0'>Google</a>";
+echo "<a href='bingo.php?q=$query&p=$page&m=1'>&nbsp;&nbsp;Bingo</a></div>";
 ?>
 	</body>
 </html>
