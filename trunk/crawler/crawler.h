@@ -26,7 +26,7 @@ public:
     
 private:
     static const size_t IMAGES_PER_PAGE = 21;
-    static const size_t MAX_DOWNLOAD_PAGE = 50;
+    static const size_t MAX_DOWNLOAD_PAGE = 5;
     void GetQueryList(const std::string& file = "../data/query_list");
     void Download(const std::string& query);
     void Download(const std::string& query, const size_t page, const std::string& dir);
