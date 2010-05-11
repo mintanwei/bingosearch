@@ -23,6 +23,7 @@ Header("Content-Type: text/html; charset=utf-8");
 
 $fp = fopen("query_log", "ar");
 $query = urldecode(urlencode($_GET["q"]));
+$query = strtolower($query);
 $ip = $_SERVER['REMOTE_ADDR'];
 fwrite($fp, "$query $ip\n");
 fclose($fp);
@@ -178,9 +179,9 @@ else if ($query != "" && $cnt != 0) {
 		echo "<div align='center'><a href='bingo.php?q=$query&p=$pre&m=$method'>&lt;&lt; Previous</a>";
 		echo "<a href='bingo.php?q=$query&p=$next&m=$method'>&nbsp;&nbsp;Next &gt&gt</a></div>";
 	}
+	echo "<div align='right'><a href='bingo.php?q=$query&p=$page&m=0'>Google</a>";
+	echo "<a href='bingo.php?q=$query&p=$page&m=1'>&nbsp;&nbsp;Bingo</a></div>";
 }
-echo "<div align='right'><a href='bingo.php?q=$query&p=$page&m=0'>Google</a>";
-echo "<a href='bingo.php?q=$query&p=$page&m=1'>&nbsp;&nbsp;Bingo</a></div>";
 ?>
 	</body>
 </html>
