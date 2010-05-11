@@ -26,25 +26,48 @@ $ip = $_SERVER['REMOTE_ADDR'];
 fwrite($fp, "$query $ip\n");
 fclose($fp);
 
-$max_img = $_GET["m"];
-$start = $_GET["p"];
+$max_img = $_GET["n"];
+$page = $_GET["p"];
+$method = $_GET["m"];
 
 if ($max_img == "") {
 	$max_img = 20;
 }
-if ($start == "") {
-	$start = 0;
+if ($page == "") {
+	$page = 0;
+}
+if ($method == "") {
+	$method = 0;
 }
 
-if (file_exists("index/$query") && $query != "") {
-	$fp = fopen("index/$query", "r");
+if ($method == 0) {
+	$index = "index/";
+}
+else if ($method == 1) {
+	$index = "index_sift/";
+}
+else {
+	die;
+}
+
+$line_cnt = count(file("$index$query"));
+
+if (file_exists("$index$query") && $query != "" && $line_cnt >= ($page + 1) * $max_img * 8) {
+	$can_use_algo = 1;
+	$fp = fopen("$index$query", "r");
 	$cnt = 0;
 	echo "<div style='position: relative;'>";
 	echo "<table width='100%' class='ts'>";
 	echo "<tbody>";
-	while (!feof($fp) && $cnt < $max_img) {
+	while ($cnt < $page) {
+		for ($i = 0; $i < $max_img * 8; $i++) {
+			fgets($fp);
+		}
+		++$cnt;
+	}
+	$cnt = 0;
+	while ($cnt < $max_img) {
 		$id = fgets($fp);
-		$id = 20 * $start + $id;
 		$thubnail_src = fgets($fp);
 		$image_src = fgets($fp);
 		$page_url = fgets($fp);
@@ -73,7 +96,7 @@ if (file_exists("index/$query") && $query != "") {
 }
 
 else if ($query != "") {
-	$first_one = $start * 20;
+	$first_one = $page * 20;
 	$url = "http://images.google.com.hk/images?q=$query&start=$first_one&ndsp=$max_img&hl=en";
 	$contents = file_get_contents($url); 
 	preg_match_all('/\["\/imgres\?.*?""]/', $contents, $matches);
@@ -143,15 +166,15 @@ if ($query != "" && $cnt == 0) {
 }
 else if ($query != "" && $cnt != 0) {
 	echo "<br>";
-	if ($start == 0) {
-		$next = $start + 1;
-		echo "<div align='center'><a href='bingo.php?q=$query&p=$next'>Next &gt;&gt;</a></div>";
+	if ($page == 0) {
+		$next = $page + 1;
+		echo "<div align='center'><a href='bingo.php?q=$query&p=$next&m=$method'>Next &gt;&gt;</a></div>";
 	}
 	else {
-		$next = $start + 1;
-		$pre = $start - 1;
-		echo "<div align='center'><a href='bingo.php?q=$query&p=$pre'>&lt;&lt; Previous</a>";
-		echo "<a href='bingo.php?q=$query&p=$next'>&nbsp;&nbsp;Next &gt&gt</a></div>";
+		$next = $page + 1;
+		$pre = $page - 1;
+		echo "<div align='center'><a href='bingo.php?q=$query&p=$pre&m=$method'>&lt;&lt; Previous</a>";
+		echo "<a href='bingo.php?q=$query&p=$next&m=$method'>&nbsp;&nbsp;Next &gt&gt</a></div>";
 	}
 }
 ?>
