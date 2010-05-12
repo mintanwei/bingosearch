@@ -1,3 +1,5 @@
+# first edit query_list in data/
+sh pre.sh
 cd query_preprocessor
 sh query_preprocessor.sh
 cd ../crawler
@@ -12,3 +14,5 @@ cd ../visual_rank/
 ./visual_rank
 cd ../index_builder/
 ./index_builder
+cd ..
+perl move.pl
