@@ -18,12 +18,36 @@
 			</form>
 		</center>
 <?php
+
+function query_parse($query)
+{
+	$ret = "";
+	$length = strlen($query);
+	for ($start = 0; $start < $length && $query{$start} == ' '; $start++) ;
+	for ($end = $length - 1; $end >= $start && $query{$end} == ' '; $end--) ;
+	for ($i = $start; $i <= $end; $i++) {
+		if ($query{$i} == ' ') {
+			if ($i >= 1 && $query{$i - 1} == ' ') {
+			}
+			else {
+				$ret = "$ret+";
+			}
+		}
+		else {
+			$tmp = $query{$i};
+			$ret = "$ret$tmp";
+		}
+	}
+	return $ret;
+}
+
 error_reporting(E_ERROR); 
 Header("Content-Type: text/html; charset=utf-8");
 
 $fp = fopen("query_log", "ar");
 $query = urldecode(urlencode($_GET["q"]));
 $query = strtolower($query);
+$query = query_parse($query); 
 $ip = $_SERVER['REMOTE_ADDR'];
 fwrite($fp, "$query $ip\n");
 fclose($fp);
