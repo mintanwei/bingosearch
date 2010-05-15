@@ -29,10 +29,12 @@ public:
 private:
     size_t GetDirItemCount(const std::string& path);
     bool GaussTpivot(size_t n);
+	void RemoveDuplicateImages(bool toDelete[]);
 
 private:
     static const size_t IMAGE_PER_PATH = 100;
     static const double DAMPING_FACTOR = 0.85;
+	static const double DUPLICATE_THRESHOLD = 0.4;
     static const double EPS = 1e-8;
 
     double mRes[IMAGE_PER_PATH];
