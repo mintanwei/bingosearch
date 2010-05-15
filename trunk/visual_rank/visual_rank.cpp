@@ -12,6 +12,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <cmath>
+#include <vector>
 #include <cstdlib>
 #include <cstring>
 #include <fstream>
@@ -55,6 +56,9 @@ void VisualRank::GetVisualRank(const string& path, ImageSimilarity* judge)
     }
     mRes[mImageCount - 1] = 1;
 
+	bool toDelete[IMAGE_PER_PATH];
+	memset(toDelete, false, sizeof toDelete);
+
     for (size_t i = 0; i < mImageCount; ++i) 
     {
         mMat[i][i] = 0;
@@ -63,8 +67,25 @@ void VisualRank::GetVisualRank(const string& path, ImageSimilarity* judge)
             mMat[i][j] = mMat[j][i] = DAMPING_FACTOR * 
                 judge->GetSimilarity(path + Common::itoa<size_t>(i), 
                                      path + Common::itoa<size_t>(j));
+			if (mMat[i][j] > DAMPING_FACTOR * DUPLICATE_THRESHOLD) 
+			{
+				toDelete[j] = true;
+			}
         }
     }
+	
+
+	cout << "***********************" << endl;
+	for (size_t i = 0; i < mImageCount; ++i) 
+	{
+		for (size_t j = 0; j < mImageCount; ++j) 
+		{
+			cout << mMat[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << "***********************" << endl;
+
     // normalize
     for (size_t j = 0; j < mImageCount; ++j) 
     {
@@ -91,6 +112,7 @@ void VisualRank::GetVisualRank(const string& path, ImageSimilarity* judge)
         mMat[mImageCount - 1][j] = 1;
     }
     GaussTpivot(mImageCount);
+	RemoveDuplicateImages(toDelete);
 
     // for test
     for (size_t i = 0; i < mImageCount; ++i) 
@@ -105,6 +127,61 @@ void VisualRank::GetVisualRank(const string& path, ImageSimilarity* judge)
     {
         cout << i << " " << mRes[i] << endl;
     }
+}
+
+void VisualRank::RemoveDuplicateImages(bool toDelete[])
+{
+	for (size_t i = 0; i < mImageCount; ++i) 
+	{
+		if (toDelete[i]) 
+		{
+			mRes[i] = 0;
+		}
+	}
+	/*
+	bool visited[IMAGE_PER_PATH];
+	memset(visited, false, sizeof visited);
+
+	for (size_t i = 0; i < mImageCount; ++i) 
+	{
+		if (!visited[i]) 
+		{
+			vector<size_t> group;		
+			group.push_back(i);
+			visited[i] = true;
+			for (size_t j = i + 1; j < mImageCount; ++j) 
+			{
+				if (mMat[i][j] > DUPLICATE_THRESHOLD * DAMPING_FACTOR) 
+				{
+					group.push_back(j);
+					visited[j] = true;
+				}
+			}
+			for (size_t j = 0; j < group.size(); ++j) 
+			{
+				for (size_t k = j + 1; k < group.size(); ++k) 
+				{
+					mMat[group[j]][group[k]] = (j ? 0 : mMat[group[j]][group[k]]);
+					mMat[group[k]][group[j]] = 0;
+				}
+			}
+		}
+	}
+	*/
+	/*
+	cout << mImageCount << "gogogo" << endl;
+	for (size_t i = 0; i < mImageCount; ++i) 
+	{
+		for (size_t j = i + 1; j < mImageCount; ++j) 
+		{
+			cout << i << "gogogo" << j << endl;
+			if (mMat[i][j] > DUPLICATE_THRESHOLD * DAMPING_FACTOR) 
+			{
+				mMat[i][j] = mMat[j][i] = 0;
+			}
+		}
+	}
+	*/
 }
 
 size_t VisualRank::GetDirItemCount(const string& path)

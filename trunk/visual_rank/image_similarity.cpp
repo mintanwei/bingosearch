@@ -25,7 +25,7 @@ ImageSimilarity::~ImageSimilarity()
 
 double ImageSimilarity::GetSimilarity(const string& imgFileA, const string& imgFileB) 
 {
-    return 1.0;
+    return 0.01;
 }
 
 } /* end of visualrank */
