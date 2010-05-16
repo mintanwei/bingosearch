@@ -26,7 +26,9 @@ sub move_dir
 	open QUERY, $file or die "FAIL TO OPEN $file";
 	while (<QUERY>) {
 		chomp;
+		print "sudo rm -r $to_dir$_";
 		print "sudo cp -r $from_dir$_ $to_dir$_\n";
+		system("sudo rm -r $to_dir$_");
 		system("sudo cp -r $from_dir$_ $to_dir$_");
 	}
 }
