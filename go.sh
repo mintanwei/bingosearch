@@ -1,5 +1,5 @@
 # first edit query_list in data/
-sh pre.sh
+#sh pre.sh
 cd query_preprocessor
 sh query_preprocessor.sh
 cd ../crawler
